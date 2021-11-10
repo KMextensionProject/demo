@@ -3,8 +3,9 @@ package com.demo.config;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.demo.security.SecurityConfig;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
