@@ -8,9 +8,8 @@ import java.util.Set;
 
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 
+import com.demo.exceptions.UnexpectedDataCount;
 import com.demo.utils.TypeConverter;
-
-import sk.loto.exceptions.UnexpectedDataCount;
 
 public class TypeMap implements Map<String, Object> {
 
