@@ -20,5 +20,4 @@ public class LoggerConfig {
 			Logger.getAnonymousLogger().severe(e.getMessage());
 		}
 	}
-
 }
