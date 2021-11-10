@@ -13,7 +13,7 @@ public class AuthDataSource extends DriverManagerDataSource {
 			@Value("${auth_url}") final String auth_url,
 			@Value("${auth_username}") final String auth_username,
 			@Value("${auth_password}") final String auth_password,
-			@Value("${auth_driver}") final String auth_driver) {
+			@Value("${driver}") final String auth_driver) {
 
 		super.setUrl(auth_url);
 		super.setUsername(auth_username);
