@@ -8,4 +8,8 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class RequestContext {
 
+	// TODO: daj mi usera
+	// TODO: daj mi transakcny cas
+	// TODO: daj mi transaction ID?
+	
 }
