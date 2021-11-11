@@ -19,7 +19,7 @@ public class DemoUser extends DemoObject implements UserDetails {
 
 	private String username;
 	private String password;
-	private Collection<? extends GrantedAuthority> authorities;
+	private Collection<GrantedAuthority> authorities;
 	private boolean isAccountNonExpired;
 	private boolean isAccountNonLocked;
 	private boolean isCredentialsNonExpired;
@@ -29,14 +29,14 @@ public class DemoUser extends DemoObject implements UserDetails {
 		this(username, password, getRolesAsAuthorities(roles));
 	}
 
-	public DemoUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+	public DemoUser(String username, String password, Collection<GrantedAuthority> authorities) {
 		this(username, password, authorities, true, true, true, true);
 	}
 
 	public DemoUser(
 			String username, 
 			String password, 
-			Collection<? extends GrantedAuthority> authorities,
+			Collection<GrantedAuthority> authorities,
 			boolean isAccountNonExpired, 
 			boolean isAccountNonLocked, 
 			boolean isCredentialsNonExpired,
@@ -51,7 +51,7 @@ public class DemoUser extends DemoObject implements UserDetails {
 		this.isEnabled = isEnabled;
 	}
 	
-	private static Collection<? extends GrantedAuthority> getRolesAsAuthorities(String... roles) {
+	private static Collection<GrantedAuthority> getRolesAsAuthorities(String... roles) {
 		if (roles.length == 0) {
 			return null;
 		}
@@ -70,7 +70,7 @@ public class DemoUser extends DemoObject implements UserDetails {
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public Collection<GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
 
@@ -113,11 +113,11 @@ public class DemoUser extends DemoObject implements UserDetails {
 		userMap.put("account_expired", !isAccountNonExpired);
 		userMap.put("account_locked", !isAccountNonLocked);
 		userMap.put("password_expired", !isCredentialsNonExpired);
-		userMap.put("account_enabled", !isAccountNonExpired);
+		userMap.put("account_enabled", isEnabled);
 		return userMap;
 	}
 
-	public List<String> getRoles(Collection<? extends GrantedAuthority> authorities) {
+	public List<String> getRoles(Collection<GrantedAuthority> authorities) {
 		return authorities.stream()
 			.map(GrantedAuthority::getAuthority)
 			.map(this::stripSpringRolePrefix)
