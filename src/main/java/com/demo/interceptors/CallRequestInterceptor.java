@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class CallRequestInterceptor implements HandlerInterceptor {
 
-	private static final Logger logger = Logger.getAnonymousLogger();
+	private static final Logger logger = Logger.getGlobal();
 
 	private long start;
 
