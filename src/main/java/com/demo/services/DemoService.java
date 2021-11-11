@@ -33,5 +33,13 @@ public class DemoService {
 			.map(DemoUser::toTypeMap)
 			.collect(toList());
 	}
+	
+	/**
+	 * @service /users/{username}
+	 * implementation of the logical service
+	 */
+	public TypeMap getUser(String username) {
+		return jdbcTemplate.getUserByUsername(username).toTypeMap();
+	}
 
 }
