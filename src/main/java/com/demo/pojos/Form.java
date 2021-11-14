@@ -1,11 +1,12 @@
 package com.demo.pojos;
 
-public class Form {
+import com.demo.helpers.TypeMap;
 
-	public static void main(String[] args) {
-		
-	
-		
+public class Form extends DemoObject {
+
+	@Override
+	public TypeMap toTypeMap() {
+		return null;
 	}
-	
+
 }
