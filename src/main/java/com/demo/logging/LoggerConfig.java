@@ -5,13 +5,14 @@ import java.io.InputStream;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import com.demo.enums.Resources;
 import com.demo.pojos.Form;
 
 //TODO: refactor this and configure console output also + files with date title..
 public class LoggerConfig {
 
 	static {
-		final InputStream inputStream = Form.class.getResourceAsStream("/logging.properties");
+		final InputStream inputStream = Form.class.getResourceAsStream(Resources.LOGGING_CONFIG);
 		try {
 			LogManager.getLogManager().readConfiguration(inputStream);
 		    Logger.getAnonymousLogger().info("logging test");

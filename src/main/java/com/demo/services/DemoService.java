@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.enums.Resources;
 import com.demo.helpers.TypeMap;
 import com.demo.security.database.AuthJdbcTemplate;
 import com.demo.security.user.DemoUser;
@@ -17,8 +18,6 @@ import com.demo.utils.XlsxUtils;
 @Service
 public class DemoService {
 
-	private static final String USERS_TEMPLATE = "/reports/xlsx/UsersTemplate.xlsx";
-	
 	@Autowired
 	private AuthJdbcTemplate jdbcTemplate;
 
@@ -55,7 +54,7 @@ public class DemoService {
 		try {
 			List<TypeMap> userList = getUsers();
 			TypeMap data = new TypeMap("usersTable", userList);
-			XlsxUtils.generateXlsx(response, USERS_TEMPLATE, "Users.xlsx", data);
+			XlsxUtils.generateXlsx(response, Resources.USERS_OVERVIEW_TEMPLATE, "Users.xlsx", data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
