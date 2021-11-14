@@ -1,7 +1,10 @@
 package com.demo.services;
 
-import java.util.List;
 import static java.util.stream.Collectors.toList;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +12,13 @@ import org.springframework.stereotype.Service;
 import com.demo.helpers.TypeMap;
 import com.demo.security.database.AuthJdbcTemplate;
 import com.demo.security.user.DemoUser;
+import com.demo.utils.XlsxUtils;
 
 @Service
 public class DemoService {
 
+	private static final String USERS_TEMPLATE = "/reports/xlsx/UsersTemplate.xlsx";
+	
 	@Autowired
 	private AuthJdbcTemplate jdbcTemplate;
 
@@ -42,4 +48,16 @@ public class DemoService {
 		return jdbcTemplate.getUserByUsername(username).toTypeMap();
 	}
 
+	/**
+	 * 
+	 */
+	public void getUsersExcel(HttpServletResponse response) {
+		try {
+			List<TypeMap> userList = getUsers();
+			TypeMap data = new TypeMap("usersTable", userList);
+			XlsxUtils.generateXlsx(response, USERS_TEMPLATE, "Users.xlsx", data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
