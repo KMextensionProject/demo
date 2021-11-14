@@ -50,7 +50,27 @@ public class DemoUser extends DemoObject implements UserDetails {
 		this.isCredentialsNonExpired = isCredentialsNonExpired;
 		this.isEnabled = isEnabled;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public DemoUser(TypeMap typeMap) {
+		String username = typeMap.getString("username");
+		String password = typeMap.getString("password");
+		Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) typeMap.get("roles");
+		boolean isAccountNonExpired = !typeMap.getBoolean("account_expired");
+		boolean isAccountNonLocked = !typeMap.getBoolean("account_locked");
+		boolean isCredentialsNonExpired = !typeMap.getBoolean("password_expired");
+		boolean isEnabled = typeMap.getBoolean("account_enabled");
+
+		// when there is no exception
+		this.username = username;
+		this.password = password;
+		this.authorities = authorities;
+		this.isAccountNonExpired = isAccountNonExpired;
+		this.isAccountNonLocked = isAccountNonLocked;
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+		this.isEnabled = isEnabled;
+	}
+
 	private static Collection<GrantedAuthority> getRolesAsAuthorities(String... roles) {
 		if (roles.length == 0) {
 			return null;
@@ -102,6 +122,31 @@ public class DemoUser extends DemoObject implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return isEnabled;
+	}
+
+	@Override
+	public String toString() {
+		return "User: " + username + ", active: " + isEnabled;
+	}
+
+	@Override
+	public int hashCode() {
+		return 31 * username.length();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (object == this) {
+			return true;
+		}
+		if (object instanceof DemoUser) {
+			DemoUser otherObject = (DemoUser) object;
+			if (otherObject.getUsername().equals(username)
+					&& otherObject.getAuthorities().equals(authorities)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
