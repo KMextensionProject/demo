@@ -7,10 +7,10 @@ public class GeneralException extends RuntimeException {
 	private static final long serialVersionUID = -50378626526532631L;
 
 	private String message;
-	
+
 	public GeneralException (String message, Object... messageArguments) {
 		super();
-//		this.message = MessageResolver.resolveMessage(message, messageArguments);
+		this.message = MessageResolver.resolveMessage(message, messageArguments);
 	}
 
 	@Override
