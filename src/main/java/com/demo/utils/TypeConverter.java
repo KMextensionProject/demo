@@ -9,6 +9,7 @@ public class TypeConverter {
 		return object.toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Object> getAsList(Object object) {
 		if (object instanceof List) {
 			return (List<Object>) object;
@@ -35,7 +36,9 @@ public class TypeConverter {
 	}
 
 	public Boolean getAsBoolean(Object object) {
+		if (object instanceof Boolean) {
+			return Boolean.valueOf(String.valueOf(object));
+		}
 		return null;
 	}
-
 }
