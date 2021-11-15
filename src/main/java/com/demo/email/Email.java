@@ -4,7 +4,11 @@ import java.util.Date;
 
 import org.springframework.mail.SimpleMailMessage;
 
-public class Email extends SimpleMailMessage {
+import com.demo.helpers.TypeMap;
+import com.demo.pojos.DemoObject;
+
+// TODO: implement this class as builder pattern due to complex construction?
+public class Email extends SimpleMailMessage implements DemoObject {
 
 	private static final long serialVersionUID = 3131274760105461942L;
 
@@ -21,6 +25,11 @@ public class Email extends SimpleMailMessage {
 
 	public void send() {
 		provider.getEmailSender().send(this);
+	}
+
+	@Override
+	public TypeMap toTypeMap() {
+		return null;
 	}
 
 }

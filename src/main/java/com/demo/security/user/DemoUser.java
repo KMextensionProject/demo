@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.demo.helpers.TypeMap;
 import com.demo.pojos.DemoObject;
 
-public class DemoUser extends DemoObject implements UserDetails {
+public class DemoUser implements UserDetails, DemoObject {
 
 	private static final long serialVersionUID = -5419119032616070437L;
 
